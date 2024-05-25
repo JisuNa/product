@@ -1,5 +1,6 @@
 package com.musinsa.product.domain.rdb.infrastructure.persistence
 
+import com.musinsa.product.domain.rdb.domain.entity.Product
 import com.musinsa.product.domain.rdb.domain.repository.ProductRepository
 import com.musinsa.product.domain.rdb.infrastructure.persistence.jpa.JpaProductRepository
 

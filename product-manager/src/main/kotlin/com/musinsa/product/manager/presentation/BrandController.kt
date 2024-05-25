@@ -1,15 +1,35 @@
 package com.musinsa.product.manager.presentation
 
+import com.musinsa.product.manager.application.fasade.BrandManager
+import com.musinsa.product.manager.presentation.common.response.NoDataResponse
+import com.musinsa.product.manager.presentation.request.BrandAddRequest
+import org.springframework.validation.annotation.Validated
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/admin/brands")
-class BrandController {
+@RequestMapping("/manager/brands")
+class BrandController(private val brandManager: BrandManager) {
 
-    @PostMapping(name = "상품 추가")
-    fun addProduct() {
+    @PostMapping(name = "브랜드 추가")
+    fun addBrand(@RequestBody @Validated request: BrandAddRequest): NoDataResponse {
+        brandManager.addBrand(request.name)
+        return NoDataResponse()
+    }
 
+    @PutMapping(name = "브랜드 수정")
+    fun modifyBrand(): NoDataResponse {
+
+        return NoDataResponse()
+    }
+
+    @DeleteMapping(name = "브랜드 삭제")
+    fun removeBrand(): NoDataResponse {
+
+        return NoDataResponse()
     }
 }

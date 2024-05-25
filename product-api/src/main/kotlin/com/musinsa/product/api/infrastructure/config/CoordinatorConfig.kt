@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration
 class CoordinatorConfig {
 
     @Bean
-    fun brandProductsGetByMinTotalPriceProcessor(productRepository: ProductRepository) =
+    fun cheapestBrandProductsProcessor(productRepository: ProductRepository) =
         CheapestBrandProductsProcessor(productRepository)
 
     @Bean
