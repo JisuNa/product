@@ -25,13 +25,13 @@ class BrandController(private val brandManager: BrandManager) {
 
     @PutMapping(name = "브랜드 수정")
     fun updateBrand(@RequestBody @Validated request: BrandPutRequest): NoDataResponse {
-        brandManager.updateBrand(request.id, request.name)
+        brandManager.updateBrand(request.brandId, request.brandName)
         return NoDataResponse()
     }
 
     @DeleteMapping(name = "브랜드 삭제")
     fun removeBrand(@RequestBody @Validated request: BrandRemoveRequest): NoDataResponse {
-        brandManager.removeBrand(request.id)
+        brandManager.removeBrand(request.brandId)
         return NoDataResponse()
     }
 }

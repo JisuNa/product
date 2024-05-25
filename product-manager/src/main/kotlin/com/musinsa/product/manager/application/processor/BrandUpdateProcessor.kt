@@ -6,6 +6,6 @@ import com.musinsa.product.manager.application.exception.NotFoundBrandException
 class BrandUpdateProcessor(private val brandRepository: BrandRepository) {
     fun execute(id: Long, name: String) {
         brandRepository.findById(id).orElseThrow { NotFoundBrandException() }
-            .apply { this.name = name }
+            .apply { update(name) }
     }
 }

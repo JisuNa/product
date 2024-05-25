@@ -1,13 +1,10 @@
 package com.musinsa.product.manager.application.fasade
 
-import com.musinsa.product.manager.application.processor.BrandAddProcessor
-import com.musinsa.product.manager.application.processor.BrandRemoveProcessor
-import com.musinsa.product.manager.application.processor.BrandUpdateProcessor
 import com.musinsa.product.manager.application.processor.ProductAddProcessor
 import com.musinsa.product.manager.application.processor.ProductRemoveProcessor
 import com.musinsa.product.manager.application.processor.ProductUpdateProcessor
-import com.musinsa.product.manager.presentation.request.BrandAddRequest
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class ProductManager(
@@ -15,15 +12,18 @@ class ProductManager(
     private val productUpdateProcessor: ProductUpdateProcessor,
     private val productRemoveProcessor: ProductRemoveProcessor
 ) {
-    fun addProduct() {
-        productAddProcessor.execute()
+    @Transactional
+    fun addProduct(brandId: Long, categoryId: Long, price: Int) {
+        productAddProcessor.execute(brandId, categoryId, price)
     }
 
-    fun updateProduct() {
-        productUpdateProcessor.execute()
+    @Transactional
+    fun modifyProduct(productId: Long, price: Int, brandId: Long, categoryId: Long) {
+        productUpdateProcessor.execute(productId, price, brandId, categoryId)
     }
 
-    fun removeProduct() {
-        productRemoveProcessor.execute()
+    @Transactional
+    fun removeProduct(productId: Long) {
+        productRemoveProcessor.execute(productId)
     }
 }

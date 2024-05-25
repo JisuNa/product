@@ -5,7 +5,7 @@ import java.util.Optional
 
 interface BrandRepository {
     fun findByName(brandName: String): Brand?
-    fun save(brandName: String)
+    fun save(brand: Brand)
     fun findById(id: Long): Optional<Brand>
     fun delete(brand: Brand)
 }

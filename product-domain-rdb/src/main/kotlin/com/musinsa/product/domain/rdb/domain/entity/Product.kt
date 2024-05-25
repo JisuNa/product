@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne
 
 @Entity
 class Product(
-    val price: Int,
+    var price: Int,
     brand: Brand,
     category: Category
 ) {
@@ -31,4 +31,10 @@ class Product(
 
     var categoryId: Long = category.id
         protected set
+
+    fun update(brandId: Long, categoryId: Long, price: Int) {
+        this.brandId = brandId
+        this.categoryId = categoryId
+        this.price = price
+    }
 }

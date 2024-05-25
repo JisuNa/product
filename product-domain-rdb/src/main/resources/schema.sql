@@ -22,7 +22,9 @@ create table product
     price       int unsigned not null comment '가격',
     brand_id    bigint unsigned comment '브랜드 식별값',
     category_id bigint unsigned comment '카테고리 식별값',
-    primary key (id)
+    primary key (id),
+    foreign key (brand_id) references brand (id),
+    foreign key (category_id) references category (id)
 ) comment '상품';
 
 CREATE INDEX idx_category_id ON product (category_id);

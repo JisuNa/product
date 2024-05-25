@@ -12,4 +12,8 @@ class Brand(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0
+
+    fun update(name: String) {
+        this.name = name
+    }
 }

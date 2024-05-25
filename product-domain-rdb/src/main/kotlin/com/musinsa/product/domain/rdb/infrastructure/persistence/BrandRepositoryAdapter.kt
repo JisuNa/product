@@ -10,8 +10,8 @@ class BrandRepositoryAdapter(
 ) : BrandRepository {
     override fun findByName(brandName: String) = jpaBrandRepository.findByName(brandName)
 
-    override fun save(brandName: String) {
-        jpaBrandRepository.save(Brand(brandName))
+    override fun save(brand: Brand) {
+        jpaBrandRepository.save(brand)
     }
 
     override fun findById(id: Long): Optional<Brand> =  jpaBrandRepository.findById(id)
