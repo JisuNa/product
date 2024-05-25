@@ -4,4 +4,4 @@ import com.musinsa.product.api.application.common.GlobalResponseType
 
 class NotFoundCategoryException(
     message: String? = null,
-) : BaseException(GlobalResponseType.NOT_FOUND_BRAND, message)
+) : BaseException(GlobalResponseType.NOT_FOUND_CATEGORY, message)
