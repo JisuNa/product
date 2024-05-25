@@ -9,11 +9,10 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class BrandConfig {
-
     @Bean
     fun brandAddProcessor(brandRepository: BrandRepository) = BrandAddProcessor(brandRepository)
     @Bean
-    fun brandUpdateProcessor() = BrandUpdateProcessor()
+    fun brandUpdateProcessor(brandRepository: BrandRepository) = BrandUpdateProcessor(brandRepository)
     @Bean
-    fun brandRemoveProcessor() = BrandRemoveProcessor()
+    fun brandRemoveProcessor(brandRepository: BrandRepository) = BrandRemoveProcessor(brandRepository)
 }

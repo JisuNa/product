@@ -3,6 +3,8 @@ package com.musinsa.product.manager.presentation
 import com.musinsa.product.manager.application.fasade.BrandManager
 import com.musinsa.product.manager.presentation.common.response.NoDataResponse
 import com.musinsa.product.manager.presentation.request.BrandAddRequest
+import com.musinsa.product.manager.presentation.request.BrandPutRequest
+import com.musinsa.product.manager.presentation.request.BrandRemoveRequest
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PostMapping
@@ -22,14 +24,14 @@ class BrandController(private val brandManager: BrandManager) {
     }
 
     @PutMapping(name = "브랜드 수정")
-    fun modifyBrand(): NoDataResponse {
-
+    fun updateBrand(@RequestBody @Validated request: BrandPutRequest): NoDataResponse {
+        brandManager.updateBrand(request.id, request.name)
         return NoDataResponse()
     }
 
     @DeleteMapping(name = "브랜드 삭제")
-    fun removeBrand(): NoDataResponse {
-
+    fun removeBrand(@RequestBody @Validated request: BrandRemoveRequest): NoDataResponse {
+        brandManager.removeBrand(request.id)
         return NoDataResponse()
     }
 }

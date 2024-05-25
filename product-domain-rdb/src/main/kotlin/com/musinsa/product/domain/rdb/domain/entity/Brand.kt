@@ -7,7 +7,7 @@ import jakarta.persistence.Id
 
 @Entity
 class Brand(
-    val name: String
+    var name: String
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

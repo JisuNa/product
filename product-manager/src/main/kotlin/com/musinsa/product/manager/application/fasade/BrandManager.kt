@@ -3,7 +3,6 @@ package com.musinsa.product.manager.application.fasade
 import com.musinsa.product.manager.application.processor.BrandAddProcessor
 import com.musinsa.product.manager.application.processor.BrandRemoveProcessor
 import com.musinsa.product.manager.application.processor.BrandUpdateProcessor
-import com.musinsa.product.manager.presentation.request.BrandAddRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -18,11 +17,12 @@ class BrandManager(
         brandAddProcessor.execute(brandName)
     }
 
-    fun updateBrand() {
-        brandUpdateProcessor.execute()
+    @Transactional
+    fun updateBrand(id: Long, name: String) {
+        brandUpdateProcessor.execute(id, name)
     }
 
-    fun removeBrand() {
-        brandRemoveProcessor.execute()
+    fun removeBrand(brandId: Long) {
+        brandRemoveProcessor.execute(brandId)
     }
 }
