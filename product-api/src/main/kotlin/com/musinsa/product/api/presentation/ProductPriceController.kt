@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/product/price")
 class ProductPriceController(private val productPriceManager: ProductPriceManager) {
 
-    @GetMapping("/max-min")
+    @GetMapping("/max-min", name = "카테고리 최고가 최저가 상품 조회")
     fun getMaxMinPriceProducts(@RequestParam categoryName: String): SingleResponse<MaxMinPriceProductVo> {
         return SingleResponse(productPriceManager.getMaxMinPriceProducts(categoryName))
     }

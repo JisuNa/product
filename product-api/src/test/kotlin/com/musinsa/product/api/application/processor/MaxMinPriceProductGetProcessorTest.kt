@@ -14,8 +14,7 @@ val maxMinPriceProductGetProcessor = MaxMinPriceProductGetProcessor(categoryRepo
 
 class MaxMinPriceProductGetProcessorTest : BehaviorSpec({
 
-
-    given("카테고리 이름으로 최대, 최소 가격의 제품을 조회하는 경우") {
+    given("카테고리 이름으로 최대, 최소 가격의 제품 조회가 요청된 상황에서") {
         `when`("해당 카테고리와 제품이 존재하는 경우") {
             val categoryName = "상의"
             val minPriceProductDto = ProductDto(1, "A", 1, "상의", 1_000)

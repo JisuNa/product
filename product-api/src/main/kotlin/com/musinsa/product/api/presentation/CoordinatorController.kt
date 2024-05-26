@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/product/coordinator")
 class CoordinatorController(private val coordinatorManager: CoordinatorManager) {
 
-    @GetMapping("/category/min-price")
+    @GetMapping("/category/min-price", name = "카테고리 별 최저가 상품 조회")
     fun getProductsByCategoryMinPrice(): SingleResponse<MinPriceProductResponse> {
         return SingleResponse(
             coordinatorManager.getProductsByCategoryMinPrice()
@@ -20,7 +20,7 @@ class CoordinatorController(private val coordinatorManager: CoordinatorManager) 
         )
     }
 
-    @GetMapping("/cheapest/brand")
+    @GetMapping("/cheapest/brand", name = "단일 브랜드 총액 최저가 상품 조회")
     fun getCheapestBrandProducts(): SingleResponse<CheapestPriceBrandResponse> {
         return SingleResponse(
             coordinatorManager.getCheapestBrandProducts()
