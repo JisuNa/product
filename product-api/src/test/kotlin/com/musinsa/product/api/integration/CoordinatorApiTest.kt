@@ -1,17 +1,13 @@
 package com.musinsa.product.api.integration
 
 import com.musinsa.product.api.application.fasade.CoordinatorManager
-import com.musinsa.product.api.application.processor.CheapestBrandProductsProcessor
-import com.musinsa.product.api.application.processor.MinPriceProductsGetByCategoryProcessor
 import com.musinsa.product.api.presentation.CoordinatorController
-import com.musinsa.product.domain.rdb.domain.repository.ProductRepository
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.extensions.spring.SpringExtension
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
 

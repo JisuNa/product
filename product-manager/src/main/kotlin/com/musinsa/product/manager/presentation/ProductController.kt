@@ -4,7 +4,6 @@ import com.musinsa.product.manager.application.fasade.ProductManager
 import com.musinsa.product.manager.presentation.common.response.NoDataResponse
 import com.musinsa.product.manager.presentation.request.ProductAddRequest
 import com.musinsa.product.manager.presentation.request.ProductPutRequest
-import com.musinsa.product.manager.presentation.request.ProductRemoveRequest
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PathVariable

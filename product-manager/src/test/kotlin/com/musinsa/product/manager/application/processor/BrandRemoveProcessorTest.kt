@@ -6,7 +6,6 @@ import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.every
 import java.util.Optional
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.assertThrows
 
 val brandRemoveProcessor = BrandRemoveProcessor(brandRepository)

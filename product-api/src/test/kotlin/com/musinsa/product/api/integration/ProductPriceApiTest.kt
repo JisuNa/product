@@ -1,10 +1,7 @@
 package com.musinsa.product.api.integration
 
 import com.musinsa.product.api.application.fasade.ProductPriceManager
-import com.musinsa.product.api.application.processor.MaxMinPriceProductGetProcessor
 import com.musinsa.product.api.presentation.ProductPriceController
-import com.musinsa.product.domain.rdb.domain.repository.CategoryRepository
-import com.musinsa.product.domain.rdb.domain.repository.ProductRepository
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.FunSpec
 import io.kotest.extensions.spring.SpringExtension

@@ -5,9 +5,7 @@ import com.musinsa.product.manager.application.exception.DuplicateBrandException
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.every
-import org.junit.jupiter.api.*
-
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.assertThrows
 
 val brandAddProcessor = BrandAddProcessor(brandRepository)
 

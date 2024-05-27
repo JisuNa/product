@@ -16,4 +16,5 @@ enum class GlobalResponseType(
     NOT_FOUND_PRODUCT("404", HttpStatus.NOT_FOUND, "상품을 찾을 수 없습니다."),
     DUPLICATE_BRAND("409", HttpStatus.NOT_FOUND, "이미 등록된 브랜드입니다"),
     DUPLICATE_PRODUCT("409", HttpStatus.NOT_FOUND, "이미 등록된 상품이 존재합니다."),
+    CONFLICT("409", HttpStatus.CONFLICT, "요청한 데이터는 제약조건 충돌이 발생했습니다.")
 }
