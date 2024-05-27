@@ -13,7 +13,14 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.1")
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("io.kotest:kotest-runner-junit5:5.8.1")
+    testImplementation("io.kotest.extensions:kotest-extensions-spring:1.1.3")
+    testImplementation("io.kotest:kotest-assertions-core:5.8.1")
+    testImplementation("io.mockk:mockk:1.13.10")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
+    testImplementation("com.ninja-squad:springmockk:3.1.1")
 
     implementation(project(path = ":product-domain-rdb"))
 }

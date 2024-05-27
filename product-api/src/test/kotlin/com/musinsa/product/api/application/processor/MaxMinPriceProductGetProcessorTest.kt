@@ -44,7 +44,7 @@ class MaxMinPriceProductGetProcessorTest : BehaviorSpec({
         }
 
         `when`("해당 카테고리의 제품이 존재하지 않는 경우") {
-            val categoryName = "Category1"
+            val categoryName = "하의"
             val mockCategory = Category(categoryName)
 
             every { categoryRepository.findCategoryByName(categoryName) } returns mockCategory
