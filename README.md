@@ -78,27 +78,22 @@ curl --location 'http://localhost:8080/api/product/price/max-min?categoryName={c
 curl --location 'localhost:8090/manager/brands' \
 --header 'Content-Type: application/json' \
 --data '{
-    "name" : "Z"
+    "brandName" : "Z"
 }'
 ```
 
 **브랜드 수정 API**
 ```shell
-curl --location --request PUT 'localhost:8090/manager/brands' \
+curl --location --request PUT 'localhost:8090/manager/brands/1' \
 --header 'Content-Type: application/json' \
 --data '{
-    "id": "1",
-    "name" : "Y"
+    "brandName" : Z"
 }'
 ```
 
 **브랜드 삭제 API**
 ```shell
-curl --location --request DELETE 'localhost:8090/manager/brands' \
---header 'Content-Type: application/json' \
---data '{
-    "id" : 1
-}'
+curl --location --request DELETE 'localhost:8090/manager/brands/1'
 ```
 
 **상품 추가 API**
@@ -114,10 +109,9 @@ curl --location 'localhost:8090/manager/products' \
 
 **상품 수정 API**
 ```shell
-curl --location --request PUT 'localhost:8090/manager/products' \
+curl --location --request PUT 'localhost:8090/manager/products/2' \
 --header 'Content-Type: application/json' \
 --data '{
-    "productId" : 1,
     "brandId": 1,
     "categoryId": 1,
     "price": 1
@@ -126,5 +120,5 @@ curl --location --request PUT 'localhost:8090/manager/products' \
 
 **상품 삭제 API**
 ```shell
-curl --location --request DELETE 'localhost:8090/manager/products'
+curl --location --request DELETE 'localhost:8090/manager/products/1'
 ```

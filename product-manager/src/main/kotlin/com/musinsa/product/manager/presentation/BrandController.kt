@@ -19,7 +19,7 @@ class BrandController(private val brandManager: BrandManager) {
 
     @PostMapping(name = "브랜드 추가")
     fun addBrand(@RequestBody @Validated request: BrandAddRequest): NoDataResponse {
-        brandManager.addBrand(request.name)
+        brandManager.addBrand(request.brandName)
         return NoDataResponse()
     }
 
