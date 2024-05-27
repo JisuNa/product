@@ -27,7 +27,6 @@ class BrandRemoveProcessorTest : BehaviorSpec({
         }
 
         `when`("삭제할 브랜드가 존재하지 않는 경우") {
-            val requestBrandId = 1L
             every { brandRepository.findById(any()) } returns Optional.empty()
 
             then("NotFoundBrandException을 던진다") {
