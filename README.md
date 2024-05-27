@@ -5,6 +5,7 @@
 - JDK 21
 - Spring Boot 3
 - Spring Data JPA
+- QueryDSL
 - H2
 - Kotest
 
@@ -45,4 +46,85 @@
 
 # 실행
 ./gradlew product-manager:bootRun
+```
+
+## ERD
+<img src="./docs/erd.png" width="500">
+
+## API 명세
+
+### product-api
+
+**카테고리 별 최저가 브랜드와 상품가격, 총액 조회 API**
+```shell
+curl --location 'http://localhost:8080/api/product/coordinator/category/min-price'
+```
+
+**단일 브랜드로 모든 카테고리 상품을 구매할 때 최저가격에 판매하는 브랜드와 카테고리의 상품가격, 총액 조회 API**
+```shell
+
+curl --location 'http://localhost:8080/api/product/coordinator/cheapest/brand'
+```
+
+**카테고리 이름으로 최저가, 최고가 브랜드와 상품 가격 조회 API**
+```shell
+curl --location 'http://localhost:8080/api/product/price/max-min?categoryName={categoryName}'
+```
+
+### product-manager
+
+**브랜드 추가 API**
+```shell
+curl --location 'localhost:8090/manager/brands' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name" : "Z"
+}'
+```
+
+**브랜드 수정 API**
+```shell
+curl --location --request PUT 'localhost:8090/manager/brands' \
+--header 'Content-Type: application/json' \
+--data '{
+    "id": "1",
+    "name" : "Y"
+}'
+```
+
+**브랜드 삭제 API**
+```shell
+curl --location --request DELETE 'localhost:8090/manager/brands' \
+--header 'Content-Type: application/json' \
+--data '{
+    "id" : 1
+}'
+```
+
+**상품 추가 API**
+```shell
+curl --location 'localhost:8090/manager/products' \
+--header 'Content-Type: application/json' \
+--data '{
+    "brandId": 10,
+    "categoryId": 10,
+    "price": 1
+}'
+```
+
+**상품 수정 API**
+```shell
+curl --location --request PUT 'localhost:8090/manager/products' \
+--header 'Content-Type: application/json' \
+--data '{
+    "productId" : 1,
+    "brandId": 1,
+    "categoryId": 1,
+    "price": 1
+}'
+```
+
+**상품 삭제 API**
+```shell
+curl --location --request DELETE 'localhost:8090/manager/products'
 ```
