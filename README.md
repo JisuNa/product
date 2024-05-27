@@ -23,20 +23,26 @@
 
 ## 코드 빌드, 테스트, 실행
 
-### 빌드
+### product-api
 ```shell
-./gradlew musinsa-product:product-api clean build
-./gradlew musinsa-product:product-manager clean build
+# 빌드
+./gradlew product-api:build
+
+# 테스트
+./gradlew product-api:test
+
+# 실행
+./gradlew product-api:bootRun
 ```
 
-### 테스트
+### product-manager
 ```shell
-./gradlew musinsa-product:product-api test
-./gradlew musinsa-product:product-manager test
-```
+#빌드
+./gradlew product-manager:build
 
-### 실행
-```shell
-./gradlew musinsa-product:product-api bootRun
-./gradlew musinsa-product:product-manager bootRun
+# 테스트
+./gradlew product-manager:test
+
+# 실행
+./gradlew product-manager:bootRun
 ```
