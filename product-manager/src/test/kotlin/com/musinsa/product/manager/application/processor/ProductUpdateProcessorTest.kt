@@ -28,9 +28,9 @@ class ProductUpdateProcessorTest : BehaviorSpec({
 
             val mockProduct = Product(price, mockBrand, mockCategory)
 
-            every { productRepository.findById(productId) } returns Optional.of(mockProduct)
-            every { brandRepository.findById(brandId) } returns Optional.of(mockBrand)
-            every { categoryRepository.findById(categoryId) } returns Optional.of(mockCategory)
+            every { productRepository.findById(any()) } returns Optional.of(mockProduct)
+            every { brandRepository.findById(any()) } returns Optional.of(mockBrand)
+            every { categoryRepository.findById(any()) } returns Optional.of(mockCategory)
             every { productRepository.findByBrandAndCategory(any(), any()) } returns null
 
             then("정상적으로 수정된다.") {
@@ -42,7 +42,7 @@ class ProductUpdateProcessorTest : BehaviorSpec({
         `when`("수정할 상품이 없는 경우") {
             val notExistProductId = 99L
 
-            every { productRepository.findById(notExistProductId) } returns Optional.empty()
+            every { productRepository.findById(any()) } returns Optional.empty()
 
             then("NotFoundProductException을 던진다") {
                 assertThrows<NotFoundProductException> {
@@ -55,8 +55,8 @@ class ProductUpdateProcessorTest : BehaviorSpec({
             val notExistBrandId = 99999L
             val mockProduct = Product(price, mockBrand, mockCategory)
 
-            every { productRepository.findById(productId) } returns Optional.of(mockProduct)
-            every { brandRepository.findById(notExistBrandId) } returns Optional.empty()
+            every { productRepository.findById(any()) } returns Optional.of(mockProduct)
+            every { brandRepository.findById(any()) } returns Optional.empty()
 
             then("NotFoundBrandException을 던진다") {
                 assertThrows<NotFoundBrandException> {

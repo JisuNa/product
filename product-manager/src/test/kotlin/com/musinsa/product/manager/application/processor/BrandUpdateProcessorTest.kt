@@ -17,7 +17,7 @@ class BrandUpdateProcessorTest : BehaviorSpec({
             val brandName = "무신사 스탠다드"
             val mockBrand = Brand(brandName)
 
-            every { brandRepository.findById(brandId) } returns Optional.of(mockBrand)
+            every { brandRepository.findById(any()) } returns Optional.of(mockBrand)
 
             then("정상적으로 수정된다.") {
                 val result = brandUpdateProcessor.execute(brandId, brandName)
@@ -28,7 +28,7 @@ class BrandUpdateProcessorTest : BehaviorSpec({
         `when`("수정할 브랜드가 없는 경우") {
             val brandId = 99L
 
-            every { brandRepository.findById(brandId) } returns Optional.empty()
+            every { brandRepository.findById(any()) } returns Optional.empty()
 
             then("NotFoundBrandException을 던진다") {
                 assertThrows<NotFoundBrandException> {

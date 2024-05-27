@@ -9,7 +9,7 @@ data class CheapestPriceBrandResponse(
     companion object Factory {
         fun of(dto: BrandDto): CheapestPriceBrandResponse {
             return CheapestPriceBrandResponse(
-                CheapestPriceBrand.of(dto.brandName, dto.products)
+                CheapestPriceBrand.of(dto.brandName, dto.products, dto.totalPrice)
             )
         }
     }
@@ -17,16 +17,12 @@ data class CheapestPriceBrandResponse(
 
 data class CheapestPriceBrand(
     val brand: String,
-    val product: List<Product>,
+    val products: List<Product>,
     val totalPrice: Int
 ) {
     companion object Factory {
-        fun of(brand: String, productDots: List<ProductDto>): CheapestPriceBrand {
-            return CheapestPriceBrand(
-                brand,
-                productDots.map { Product.of(it) },
-                productDots.sumOf { it.price }
-            )
+        fun of(brand: String, productDots: List<ProductDto>, totalPrice: Int): CheapestPriceBrand {
+            return CheapestPriceBrand(brand, productDots.map { Product.of(it) }, totalPrice)
         }
     }
 }

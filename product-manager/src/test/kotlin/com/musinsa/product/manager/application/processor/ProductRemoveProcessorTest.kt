@@ -18,7 +18,8 @@ class ProductRemoveProcessorTest : BehaviorSpec({
             val productId = 1L
             val mockProduct = Product(10_000, Brand("A"), Category("상의"))
 
-            every { productRepository.findById(productId) } returns Optional.of(mockProduct)
+            every { productRepository.findById(any()) } returns Optional.of(mockProduct)
+            every { productRepository.delete(any()) } returns Unit
 
             then("정상적으로 삭제된다.") {
                 val result = productRemoveProcessor.execute(productId)

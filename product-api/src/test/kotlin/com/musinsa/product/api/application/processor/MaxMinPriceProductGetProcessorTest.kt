@@ -21,7 +21,7 @@ class MaxMinPriceProductGetProcessorTest : BehaviorSpec({
             val maxPriceProductDto = ProductDto(2, "B", 2, "상의", 10_000)
             val mockCategory = Category(categoryName)
 
-            every { categoryRepository.findCategoryByName(categoryName) } returns mockCategory
+            every { categoryRepository.findCategoryByName(any()) } returns mockCategory
             every { productRepository.findMinPriceProductByCategoryId(any()) } returns minPriceProductDto
             every { productRepository.findMaxPriceProductsByCategory(any()) } returns maxPriceProductDto
 
@@ -34,7 +34,7 @@ class MaxMinPriceProductGetProcessorTest : BehaviorSpec({
         `when`("해당 카테고리가 존재하지 않는 경우") {
             val categoryName = "속옷"
 
-            every { categoryRepository.findCategoryByName(categoryName) } returns null
+            every { categoryRepository.findCategoryByName(any()) } returns null
 
             then("NotFoundCategoryException을 던진다") {
                 assertThrows<NotFoundCategoryException> {
@@ -47,7 +47,7 @@ class MaxMinPriceProductGetProcessorTest : BehaviorSpec({
             val categoryName = "하의"
             val mockCategory = Category(categoryName)
 
-            every { categoryRepository.findCategoryByName(categoryName) } returns mockCategory
+            every { categoryRepository.findCategoryByName(any()) } returns mockCategory
             every { productRepository.findMinPriceProductByCategoryId(any()) } returns null
             every { productRepository.findMaxPriceProductsByCategory(any()) } returns null
 

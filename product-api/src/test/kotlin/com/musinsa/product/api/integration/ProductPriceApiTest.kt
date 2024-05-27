@@ -18,9 +18,6 @@ import org.springframework.web.servlet.function.RequestPredicates.param
 @WebMvcTest(controllers = [ProductPriceController::class])
 class ProductPriceApiTest(
     @MockBean private val productPriceManager: ProductPriceManager,
-    @MockBean private val minMaxPriceProductGetProcessor: MaxMinPriceProductGetProcessor,
-    @MockBean private val categoryRepository: CategoryRepository,
-    @MockBean private val productRepository: ProductRepository
 ) : FunSpec() {
 
     override fun isolationMode(): IsolationMode = IsolationMode.InstancePerTest
@@ -35,22 +32,17 @@ class ProductPriceApiTest(
             val request = mockMvc.get("$BASE_URL/max-min")
 
             test("성공") {
-                request
-                    .andDo { param("categoryName", "상의") }
+                request.andDo { param("categoryName", "상의") }
                     .andExpect { status { isBadRequest() } }
             }
 
             test("실패 - 카테고리 입력 안함") {
-                request
-                    .andExpect { status { is4xxClientError() } }
-                    .andReturn()
+                request.andExpect { status { isBadRequest() } }
             }
 
             test("실패 - 존재하지 않은 카테고리 입력") {
-                request
-                    .andDo { param("categoryName", "존재하지 않는 카테고리") }
-                    .andExpect { status { is4xxClientError() } }
-                    .andReturn()
+                request.andDo { param("categoryName", "존재하지 않는 카테고리") }
+                    .andExpect { status { isBadRequest() } }
             }
         }
     }

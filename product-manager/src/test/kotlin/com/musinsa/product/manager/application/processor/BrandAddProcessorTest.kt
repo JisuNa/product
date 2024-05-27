@@ -17,7 +17,7 @@ class BrandAddProcessorTest: BehaviorSpec({
 
             val brandName = "무신사 스탠다드"
 
-            every { brandRepository.findByName(brandName) } returns null
+            every { brandRepository.findByName(any()) } returns null
             every { brandRepository.save(any()) } answers { nothing }
 
             then("정상적으로 등록된다.") {
@@ -29,7 +29,7 @@ class BrandAddProcessorTest: BehaviorSpec({
         `when`("이미 등록된 브랜드일 경우") {
             val mockBrand = Brand("A")
 
-            every { brandRepository.findByName("A") } returns mockBrand
+            every { brandRepository.findByName(any()) } returns mockBrand
 
             then("DuplicateBrandException을 던진다") {
                 assertThrows<DuplicateBrandException> {

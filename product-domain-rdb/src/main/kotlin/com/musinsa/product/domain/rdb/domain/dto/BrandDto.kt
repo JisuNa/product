@@ -7,4 +7,5 @@ data class BrandDto @QueryProjection constructor(
     val brandName: String
 ) {
     var products: List<ProductDto> = listOf()
+    var totalPrice: Int = 0
 }

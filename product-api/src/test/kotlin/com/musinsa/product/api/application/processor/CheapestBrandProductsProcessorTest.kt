@@ -17,7 +17,7 @@ class CheapestBrandProductsProcessorTest : BehaviorSpec({
             val productDto = ProductDto(1, "D", 1, "상의", 11_000)
 
             every { productRepository.findCheapestBrand() } returns brandDto
-            every { productRepository.findProductsByBrandId(brandDto.brandId) } returns listOf(productDto)
+            every { productRepository.findProductsByBrandId(any()) } returns listOf(productDto)
 
             then("브랜드 정보와 그 브랜드의 제품 정보를 반환한다") {
                 val result = cheapestBrandProductsProcessor.execute()

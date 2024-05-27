@@ -24,9 +24,10 @@ class ProductAddProcessorTest : BehaviorSpec({
 
         `when`("요청값이 모두 입력되고 이미 등록된 상품이 없는 경우") {
 
-            every { brandRepository.findById(brandId) } returns Optional.of(Brand(brandName))
-            every { categoryRepository.findById(categoryId) } returns Optional.of(Category(categoryName))
+            every { brandRepository.findById(any()) } returns Optional.of(Brand(brandName))
+            every { categoryRepository.findById(any()) } returns Optional.of(Category(categoryName))
             every { productRepository.findByBrandAndCategory(any(), any()) } returns null
+            every { productRepository.save(any()) } returns Unit
 
             then("정상적으로 등록된다.") {
                 val result = productAddProcessor.execute(brandId, categoryId, price)
@@ -36,7 +37,7 @@ class ProductAddProcessorTest : BehaviorSpec({
 
         `when`("브랜드가 존재하지 않은 경우") {
 
-            every { brandRepository.findById(brandId) } returns Optional.empty()
+            every { brandRepository.findById(any()) } returns Optional.empty()
 
             then("NotFoundBrandException을 던진다") {
                 assertThrows<NotFoundBrandException> {
@@ -47,8 +48,8 @@ class ProductAddProcessorTest : BehaviorSpec({
 
         `when`("카테고리가 존재하지 않은 경우") {
 
-            every { brandRepository.findById(brandId) } returns Optional.of(Brand(brandName))
-            every { categoryRepository.findById(categoryId) } returns Optional.empty()
+            every { brandRepository.findById(any()) } returns Optional.of(Brand(brandName))
+            every { categoryRepository.findById(any()) } returns Optional.empty()
 
             then("NotFoundCategoryException을 던진다") {
                 assertThrows<NotFoundCategoryException> {
@@ -59,8 +60,8 @@ class ProductAddProcessorTest : BehaviorSpec({
 
         `when`("이미 등록된 상품일 경우") {
 
-            every { brandRepository.findById(brandId) } returns Optional.of(Brand(brandName))
-            every { categoryRepository.findById(categoryId) } returns Optional.of(Category(categoryName))
+            every { brandRepository.findById(any()) } returns Optional.of(Brand(brandName))
+            every { categoryRepository.findById(any()) } returns Optional.of(Category(categoryName))
             every {
                 productRepository.findByBrandAndCategory(any(), any())
             } returns Product(price, Brand(brandName), Category(categoryName))

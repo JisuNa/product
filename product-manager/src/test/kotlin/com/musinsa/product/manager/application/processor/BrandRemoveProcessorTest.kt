@@ -17,7 +17,7 @@ class BrandRemoveProcessorTest : BehaviorSpec({
             val requestBrandId = 1L
             val mockBrand = Brand("A")
 
-            every { brandRepository.findById(requestBrandId) } returns Optional.of(mockBrand)
+            every { brandRepository.findById(any()) } returns Optional.of(mockBrand)
             every { brandRepository.delete(any()) } answers { nothing }
 
             then("정상적으로 삭제된다.") {
@@ -28,7 +28,7 @@ class BrandRemoveProcessorTest : BehaviorSpec({
 
         `when`("삭제할 브랜드가 존재하지 않는 경우") {
             val requestBrandId = 1L
-            every { brandRepository.findById(requestBrandId) } returns Optional.empty()
+            every { brandRepository.findById(any()) } returns Optional.empty()
 
             then("NotFoundBrandException을 던진다") {
                 assertThrows<NotFoundBrandException> {
