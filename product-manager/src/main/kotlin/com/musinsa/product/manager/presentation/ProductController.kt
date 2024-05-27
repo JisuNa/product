@@ -7,6 +7,7 @@ import com.musinsa.product.manager.presentation.request.ProductPutRequest
 import com.musinsa.product.manager.presentation.request.ProductRemoveRequest
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -23,15 +24,18 @@ class ProductController(private val productManager: ProductManager) {
         return NoDataResponse()
     }
 
-    @PutMapping(name = "상품 수정")
-    fun modifyProduct(@RequestBody @Validated request: ProductPutRequest): NoDataResponse {
-        productManager.modifyProduct(request.productId, request.price, request.brandId, request.categoryId)
+    @PutMapping("/{productId}", name = "상품 수정")
+    fun modifyProduct(
+        @PathVariable productId: Long,
+        @RequestBody @Validated request: ProductPutRequest
+    ): NoDataResponse {
+        productManager.modifyProduct(productId, request.price, request.brandId, request.categoryId)
         return NoDataResponse()
     }
 
-    @DeleteMapping(name = "상품 삭제")
-    fun removeProduct(@RequestBody @Validated request: ProductRemoveRequest): NoDataResponse {
-        productManager.removeProduct(request.productId)
+    @DeleteMapping("/{productId}", name = "상품 삭제")
+    fun removeProduct(@PathVariable productId: Long): NoDataResponse {
+        productManager.removeProduct(productId)
         return NoDataResponse()
     }
 }

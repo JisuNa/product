@@ -4,8 +4,6 @@ import jakarta.validation.constraints.Min
 import jakarta.validation.constraints.NotNull
 
 data class ProductPutRequest(
-    @field:NotNull(message = "상품 id를 입력해주세요.")
-    val productId: Long,
     @field:Min(1, message = "가격을 1원 이상으로 입력해주세요.")
     val price: Int,
     @field:NotNull(message = "브랜드 id를 입력해주세요.")

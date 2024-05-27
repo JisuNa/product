@@ -4,9 +4,9 @@ import com.musinsa.product.manager.application.fasade.BrandManager
 import com.musinsa.product.manager.presentation.common.response.NoDataResponse
 import com.musinsa.product.manager.presentation.request.BrandAddRequest
 import com.musinsa.product.manager.presentation.request.BrandPutRequest
-import com.musinsa.product.manager.presentation.request.BrandRemoveRequest
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -23,15 +23,18 @@ class BrandController(private val brandManager: BrandManager) {
         return NoDataResponse()
     }
 
-    @PutMapping(name = "브랜드 수정")
-    fun updateBrand(@RequestBody @Validated request: BrandPutRequest): NoDataResponse {
-        brandManager.updateBrand(request.brandId, request.brandName)
+    @PutMapping("/{brandId}", name = "브랜드 수정")
+    fun updateBrand(
+        @PathVariable brandId: Long,
+        @RequestBody @Validated request: BrandPutRequest
+    ): NoDataResponse {
+        brandManager.updateBrand(brandId, request.brandName)
         return NoDataResponse()
     }
 
-    @DeleteMapping(name = "브랜드 삭제")
-    fun removeBrand(@RequestBody @Validated request: BrandRemoveRequest): NoDataResponse {
-        brandManager.removeBrand(request.brandId)
+    @DeleteMapping("/{brandId}", name = "브랜드 삭제")
+    fun removeBrand(@PathVariable brandId: Long): NoDataResponse {
+        brandManager.removeBrand(brandId)
         return NoDataResponse()
     }
 }

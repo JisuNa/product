@@ -52,27 +52,23 @@ class ProductApiTest(
 
         context("상품 수정") {
             test("성공") {
-                mockMvc.put(BASE_URL) {
+                mockMvc.put("$BASE_URL/{productId}", 1) {
                     contentType = MediaType.APPLICATION_JSON
-                    content = objectMapper.writeValueAsString(ProductPutRequest(1L, 10_000, 1L, 1L))
+                    content = objectMapper.writeValueAsString(ProductPutRequest( 10_000, 1L, 1L))
                 }.andExpect { status { isOk() } }
             }
 
             test("실패 - 파라미터 입력 안함") {
-                mockMvc.put(BASE_URL).andExpect { status { isBadRequest() } }
+                mockMvc.put("$BASE_URL/{productId}", 1).andExpect { status { isBadRequest() } }
             }
         }
 
         context("상품 삭제") {
             test("성공") {
-                mockMvc.delete(BASE_URL) {
+                mockMvc.delete("$BASE_URL/{productId}", 1) {
                     contentType = MediaType.APPLICATION_JSON
                     content = objectMapper.writeValueAsString(ProductRemoveRequest(1L))
                 }.andExpect { status { isOk() } }
-            }
-
-            test("실패 - 파라미터 입력 안함") {
-                mockMvc.delete(BASE_URL).andExpect { status { isBadRequest() } }
             }
         }
     }
